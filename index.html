@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/icons/cart.png">
+    <title>Cartopia | Ecommerce wesite</title>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/icons/cart.png">
+                    <p>Cartopia</p>
+                </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="account.html">Account</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <img src="/icons/menu(1).png" class="menu-icon" onclick="menutoggle()">
+            </div>
+            <div class="row">
+                <div class="col-2">            
+                    <h1>Your Ultimate Online <br>Shopping <br>Destination!</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, expedita quibusdam eaque vel est, odit quo architecto quae sit ipsa voluptate esse, debitis culpa vitae distinctio sed temporibus! Nemo, quam!</p>
+                    <a href="product.html" class="btn">Shop Now</a>
+                </div>
+                <div class="col-2">
+                    <img src="/images/pic1.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!------------About Us------------->
+<section class="about" id="about">
+        <div class="about-img">
+                <img src="images/pic2.jpg">
+        </div>
+        <div class="about-text">
+            <h2>About Us</h2>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, voluptas. Temporibus vero incidunt in, dolorum provident assumenda natus ipsum veritatis dicta, minus ratione a omnis voluptatum itaque voluptatem, nemo maxime!</p>
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A veniam quidem obcaecati explicabo ut ea facere quos magnam! Illum quam esse ipsa ab eligendi perferendis iusto dicta nostrum accusamus nihil!</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias adipisci, similique inventore repellendus eius repudiandae voluptas at. Ipsum magni tempora suscipit possimus odit obcaecati rem eum saepe, voluptas, fugiat doloribus.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+</section>
+
+<!------------featured products------------->
+    <div class="small-container">
+        <h2 class="title">Featured Products</h2>
+        <div class="row">
+            <div class="col-4">
+                <img src="/images/phone.png">
+                <h4>Infinix Xpad</h4>
+                <p>Ksh 35,000</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/airpods.png">
+                <h4>Oraimo AirPods 3 TWS</h4>
+                <p>Ksh 2,870</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/headphones.png">
+                <h4>Wireless Bluetooth Headphones</h4>
+                <p>Ksh 3,350</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/watch.png">
+                <h4>Bluetooth Wireless Smart Watch</h4>
+                <p>Ksh 1,052</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/Transcend.png">
+                <h4>Transcend External Hard Drive</h4>
+                <p>Ksh 10,450</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/power bank.png">
+                <h4>Fast Charging Power Bank</h4>
+                <p>Ksh 1,000</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/pad1.png">
+                <h4>Sony PS4 PAD controller</h4>
+                <p>Ksh 2,399</p>
+            </div>
+            <div class="col-4">
+                <img src="/images/shoes2.png">
+                <h4>Casual Men Sneakers</h4>
+                <p>Ksh 2,200</p>
+            </div>
+        </div>
+        </div>
+<!---------------footer------------------>
+    <section class="footer" id="contact">
+        <div class="footer-box">
+            <h2>Cartopia</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Quis, corrupti. Illo ab libero nulla eum quos, qui quam nesciunt nobis? <br>Rem tempore illo possimus quia eos autem eius obcaecati quidem.</p>
+            <div class="social">
+                <a href="#"><img src="/icons/instagram.png"></a>
+                <a href="#"><img src="/icons/whatsapp.png"></a>
+                <a href="#"><img src="/icons/youtube(1).png"></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Support</h3>
+            <li><a href="product.html">Products</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Return policy</a></li>
+            <li><a href="#">Terms & conditions</a></li>
+        </div>
+        <div class="footer-box">
+            <h3>View Guides</h3>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog Posts</a></li>
+            <li><a href="#">Our Branches</a></li>
+        </div>
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <div class="contact">
+                <span>+254 792892703</span>
+                <span>Postal address - 60100</span>
+                <span>Location - Embu</span>
+            </div>
+        </div>
+    </section>
+<!-----------------copyright-------------->
+<div class="copyright">
+    <p> <<<<<< #777&!; Davidstone All Right Reserved >>>>>> </p>
+</div>
+
+<!-------------JS for toggle menu------------->
+
+<script>
+    var MenuItems=document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight="0px";
+
+    function menutoggle(){
+        if(MenuItems.style.maxHeight=="0px")
+            {
+                MenuItems.style.maxHeight="200px"
+            }
+            else{
+                MenuItems.style.maxHeight="0px";
+            }
+    }
+</script>
+</body>
+</html>

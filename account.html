@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="icon" href="/icons/cart.png">
+    <title>Cartopia | Ecommerce wesite</title>
+</head>
+
+<body>
+<div class="wrapper">
+
+    <nav class="navbar">
+    <!----LOGO----->
+        <div class="nav-logo">
+            <p>Cartopia</p>
+        </div>
+
+        <div class="nav-menu" id="navMenu">
+            <ul>
+            <li><a href="index.html" class="link active">Home</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-button">
+    <!----login button----->
+            <button class="btn white-btn" id="LoginBtn" onclick="login()">Login</button>
+    <!----Sign up button----->
+            <button class="btn" id="RegistrationBtn" onclick="register()">Sign Up</button>
+        </div>
+    <!----Menu button----->
+        <div class="nav-menu-btn">
+            <img src="/icons/menu(1).png" onclick="menutoggle()">
+        </div>
+    </nav>
+
+    <!-------- form box ------>
+    <div class="form-box">
+
+    <!---- Login box ----->
+            <div class="login-box" id="login">
+
+    <!----Don't have an account, sign up & header(login)---->
+                <div class="top">
+                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                    <header>Login</header>
+                </div>
+    <!-----Username or email bar----->
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Username or email"required>
+                    <img src="user.png"><!--Email icon needed-->
+                </div>
+    <!-----Password bar------->
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="Password" required="required">
+                    <img src="padlock.png">
+                </div>
+    <!------Submit button------>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Submit">
+                </div>
+    
+                <div class="two-col">
+    <!----Forgot password----->
+                    <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check">Remember Me</label>
+                    </div>
+    <!----Forgot Password----->
+                    <div class="two">
+                        <label><a href="#">Forgot password?</a></label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        <!---- registration box ----->
+        <div class="registration-box" id="register">
+
+        <!----Have an account, login & header(sign up)----->
+            <div class="top">
+                <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                <header>Sign up</header>
+            </div>
+
+            <div class="two-forms">
+
+        <!-----Firstname bar----->
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Firstname"required>
+                    <img src="user.png">
+                </div>
+        <!-----Lastname bar----->
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Lastname"required>
+                    <img src="user.png">
+                </div>
+
+            </div>
+        <!-----Email bar ------>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email"required>
+                <img src="user.png"><!--Email icon needed-->
+            </div>
+        <!--------password bar-------->
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password"required>
+                <img src="padlock.png">
+            </div>
+        <!-------Register button------->
+            <div class="input-box">
+                <input type="submit" class="submit" value="Register">
+            </div>
+        
+            <div class="two-col">
+        <!----Checkox----->
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check">Remember Me</label>
+                </div>
+        <!---Terms & conditions---->
+                <div class="two">
+                    <label><a href="#">Terms & conditions</a></label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function menutoggle() {
+        var i = document.getElementById("navMenu");
+
+        if(i.className === "nav-menu"){
+            i.className += "responsive";
+        } else {
+            i.className = "nav-menu";
+        }
+    }
+</script>
+
+<script>
+    var a = document.getElementById("LoginBtn");
+    var b = document.getElementById("RegistrationBtn");
+    var c = document.getElementById("login");
+    var d = document.getElementById("register");
+
+    function login(){
+        c.style.left="4px";
+        d.style.right="-520px";
+        a.className +=" white-btn";
+        b.className="btn";
+        c.style.opacity=1;
+        d.style.opacity=0;
+    }
+
+    function register(){
+        c.style.left="-510px";
+        d.style.right="5px";
+        a.className ="btn";
+        b.className +=" white-btn";
+        c.style.opacity=0;
+        d.style.opacity=1;
+    }
+</script>
+
+</body>
+</html>
