@@ -280,3 +280,6 @@ h4{
     background: #dddf55;
     margin-top: 40px;
 }
+.contact a:hover{
+    color: rgb(201, 4, 255);
+}
