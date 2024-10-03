@@ -43,7 +43,7 @@ const initApp = () => {
         let newDiv = document.createElement("div");
         newDiv.classList.add("item");
         newDiv.innerHTML = `
-            <img src="/images/${value.image}"/>
+            <img src="images/${value.image}"/>
             <div class="title">${value.name}</div>
             <div class="price">KSh ${value.price.toLocaleString()}</div>
             <button onclick="addToCard(${key})">Add To Cart</button>
@@ -88,7 +88,7 @@ const reloadCard = () => {
 
             let newDiv = document.createElement("li");
             newDiv.innerHTML = `
-                <div><img src="/images/${value.image}"/></div>
+                <div><img src="images/${value.image}"/></div>
                 <div class ="cardTitle">${value.name}</div>
                 <div class ="cardPrice">KSh ${ (value.price * value.quantity).toLocaleString() }</div>
                 <div>
@@ -122,7 +122,7 @@ const searchProducts = (event) => {
             let newDiv = document.createElement("div");
             newDiv.classList.add("item");
             newDiv.innerHTML = `
-                <img src="/images/${value.image}"/>
+                <img src="images/${value.image}"/>
                 <div class="title">${value.name}</div>
                 <div class="price">KSh ${value.price.toLocaleString()}</div>
                 <button onclick="addToCard(${key})">Add To Cart</button>
