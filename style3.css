@@ -115,6 +115,7 @@ a:hover{
      /* Adjust card width */
     .card{
         width: 100%;
+        left:0;/* Align the card to the left of the screen */
     }
 
     /* Adjust card position */
@@ -137,8 +138,14 @@ a:hover{
 
     /* Adjust cart items */
     .listCard li {
-        grid-template-columns: 60px 1fr 1fr 80px;
+        grid-template-columns: 60px 1fr 1fr;/* Adjusted columns to fit better */
     }
+    /* Ensure images inside the card are responsive */
+.listCard li img {
+    width: 100%;   /* Full width for the image */
+    height: auto;  /* Maintain aspect ratio */
+    max-width: 80px; /* Limit the image size */
+}
 }
 
 
