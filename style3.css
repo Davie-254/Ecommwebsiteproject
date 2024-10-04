@@ -152,7 +152,7 @@ a:hover{
 .card{
     position: fixed;
     top: 0;
-    right:0;
+    left:100%;
     width: 500px;
     max-width: 100%; /* Ensure it doesn't exceed the screen width */
     background-color:#bebebe;
