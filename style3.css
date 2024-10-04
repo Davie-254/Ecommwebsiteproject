@@ -115,7 +115,7 @@ a:hover{
     }
      /* Adjust card width */
     .card{
-        width: 70%%;
+        width: 100%;
         left:0;/* Align the card to the left of the screen */
     }
 
