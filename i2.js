@@ -135,7 +135,7 @@ const searchProducts = (event) => {
 // Placeholder for checkout function
 const checkout = () => {
     // Implement checkout logic here
-    alert("Checkout functionality is not implemented yet.");
+    alert("Checkout functionality is not implemented yet. You can order via WhatsApp");
 };
 
 
