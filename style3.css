@@ -95,8 +95,7 @@ a:hover{
 /* For mobile and small screens */
 @media (max-width: 480px) {
     .container {
-        width: 100%;
-         padding: 0;  /* Remove any padding */
+        width: 95%;
     }
 
     .container .list {
@@ -116,12 +115,12 @@ a:hover{
      /* Adjust card width */
     .card{
         width: 100%;
-        left:0;/* Align the card to the left of the screen */
+        max-width: 500px; /* Optional: Limit maximum width */
     }
 
     /* Adjust card position */
     .active .card{
-        left: 0;
+        left: 0;/* Move card into view */
     }
 
     .active .container{
@@ -139,22 +138,8 @@ a:hover{
 
     /* Adjust cart items */
     .listCard li {
-        grid-template-columns: 60px 1fr 1fr 60px;/* Adjusted columns to fit better */
+        grid-template-columns: 60px 1fr 1fr 80px;
     }
-    /* Ensure images inside the card are responsive */
-.listCard li img {
-    width: 100%;   /* Full width for the image */
-    height: auto;  /* Maintain aspect ratio */
-    max-width: 80px; /* Limit the image size */
-}
-      /* Adjust the checkout button */
-    .card .checkoutButton {
-        height: 60px;  /* Reduce button height */
-    }
-
-    /* Adjust container transform */
-    .active .container {
-        transform: translateX(0); /* No horizontal movement */
 }
 
 
@@ -163,6 +148,7 @@ a:hover{
     top: 0;
     left: 100%;
     width: 500px;
+    max-width: 100%; /* Ensure it doesn't exceed the screen width */
     background-color:#bebebe;
     height: 100vh;
     transition: 0.5s;
@@ -326,5 +312,3 @@ a:hover{
     font-size: 25px;
     color: rgb(201, 4, 255);
 }
-
-
