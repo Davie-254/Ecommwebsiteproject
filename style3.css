@@ -152,7 +152,7 @@ a:hover{
 .card{
     position: fixed;
     top: 0;
-    left:100%;
+    left: 100%;
     width: 500px;
     max-width: 100%; /* Ensure it doesn't exceed the screen width */
     background-color:#bebebe;
@@ -231,7 +231,7 @@ a:hover{
     color: black;
 }
 .active .card{
-    left: 0;/* This makes it slide into view from the right */
+    left: 0;
 }
 .active .container{
     transform: translateX(-200px);
