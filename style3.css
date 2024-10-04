@@ -95,7 +95,8 @@ a:hover{
 /* For mobile and small screens */
 @media (max-width: 480px) {
     .container {
-        width: 95%;
+        width: 100%;
+         padding: 0;  /* Remove any padding */
     }
 
     .container .list {
@@ -138,7 +139,7 @@ a:hover{
 
     /* Adjust cart items */
     .listCard li {
-        grid-template-columns: 60px 1fr 1fr;/* Adjusted columns to fit better */
+        grid-template-columns: 60px 1fr 1fr 60px;/* Adjusted columns to fit better */
     }
     /* Ensure images inside the card are responsive */
 .listCard li img {
@@ -146,6 +147,14 @@ a:hover{
     height: auto;  /* Maintain aspect ratio */
     max-width: 80px; /* Limit the image size */
 }
+      /* Adjust the checkout button */
+    .card .checkoutButton {
+        height: 60px;  /* Reduce button height */
+    }
+
+    /* Adjust container transform */
+    .active .container {
+        transform: translateX(0); /* No horizontal movement */
 }
 
 
