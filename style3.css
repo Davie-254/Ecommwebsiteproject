@@ -114,13 +114,13 @@ a:hover{
      /* Adjust card width */
     .card{
         width: 100%;
-        max-width: 100%; /* Ensure it doesn't exceed the screen width */
-        left: 0; /* Ensure the card is aligned to the left */
+        right:-100%; /* Ensure the card is aligned to the left */
+        position: fixed;
     }
 
     /* Adjust card position */
     .active .card{
-        left: 0;/* Move card into view */
+        right: 0;/* Move card into view */
     }
 
     .active .container{
@@ -149,15 +149,33 @@ a:hover{
 }
 
 
+/* For Laptop/Desktop */
+@media (min-width: 481px) {
+    .container {
+        width: 1000px;
+    }
+
+    /* Card initially off-screen */
+    .card {
+        right: -500px; /* Card is hidden off-screen to the right */
+    }
+
+    /* When the card is active, it slides in from the right */
+    .active .card {
+        right: 0; /* Card slides into view from the right */
+    }
+}
+
+
 .card{
     position: fixed;
     top: 0;
-    left: 100%;
+    right:-500px;
     width: 500px;
     max-width: 100%; /* Ensure it doesn't exceed the screen width */
     background-color:#bebebe;
     height: 100vh;
-    transition: 0.5s;
+    transition: right 0.5s ease-in-out;
     display:flex;
     flex-direction: column;
 }
@@ -231,7 +249,7 @@ a:hover{
     color: black;
 }
 .active .card{
-    left: 0;
+    right: 0;
 }
 .active .container{
     transform: translateX(-200px);
