@@ -148,16 +148,34 @@ a:hover{
     }
 }
 
+/* For larger devices (laptop/desktop) */
+@media (min-width: 481px) {
+    .container {
+        width: 1000px;
+    }
+
+    /* Adjust the card's default position */
+    .card {
+        right: -500px; /* Keep it off-screen to the right */
+    }
+
+    /* When active, the card will slide in from the right */
+    .active .card {
+        right: 0; /* Bring the card into view */
+    }
+}
+
+
 
 .card{
     position: fixed;
     top: 0;
-    left: 100%;
+    right: -500px; /* Position it off-screen to the right */
     width: 500px;
     max-width: 100%; /* Ensure it doesn't exceed the screen width */
     background-color:#bebebe;
     height: 100vh;
-    transition: 0.5s;
+    transition: 0.5s ease-in-out; /* Smooth transition for sliding */;
     display:flex;
     flex-direction: column;
 }
@@ -231,7 +249,7 @@ a:hover{
     color: black;
 }
 .active .card{
-    left: 0;
+    right: 0; /* Move the card into view from the right */
 }
 .active .container{
     transform: translateX(-200px);
