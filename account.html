@@ -5,76 +5,99 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create an account or login to Cartopia for a personalized shopping experience.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style2.css">
     <link rel="icon" href="icons/cart.png">
-    <title>Cartopia | Ecommerce wesite</title>
+    <title>Cartopia | Account - Login or Sign Up</title>
 </head>
 
 <body>
 <div class="wrapper">
 
+    <!-- Mobile side drawer backdrop -->
+    <div class="nav-backdrop" id="navBackdrop" onclick="menutoggle()" aria-hidden="true"></div>
+
     <nav class="navbar">
-    <!----LOGO----->
-        <div class="nav-logo">
-            <p>Cartopia</p>
+        <div class="nav-left">
+        <!----LOGO----->
+            <div class="nav-logo">
+                <img src="icons/cart.png" alt="Cartopia" class="logo-icon">
+                <p>Cartopia</p>
+            </div>
         </div>
 
-        <div class="nav-menu" id="navMenu">
-            <ul>
-            <li><a href="index.html" class="link active">Home</a></li>
-            </ul>
+        <div class="nav-center">
+            <div class="nav-menu" id="navMenu">
+                <div class="drawer-header">
+                    <img src="icons/cart.png" alt="Cartopia" class="logo-icon">
+                    <span>Cartopia</span>
+                    <button type="button" class="drawer-close" id="drawerCloseBtn" onclick="menutoggle()" aria-label="Close menu">&#10005;</button>
+                </div>
+                <ul>
+                <li><a href="index.html" class="link">Home</a></li>
+                <li><a href="product.html" class="link">Products</a></li>
+                <li class="nav-mobile-only"><a href="#" class="link mobile-login-btn" onclick="showLogin()">Login</a></li>
+                <li class="nav-mobile-only"><a href="#" class="link mobile-register-btn" onclick="showRegister()">Sign Up</a></li>
+                <li class="nav-mobile-only nav-mobile-user hidden" id="mobileUser">
+                    <a href="#" class="link mobile-logout-btn" onclick="handleMobileLogout(event)">Logout</a>
+                </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="nav-button">
-    <!----login button----->
-            <button class="btn white-btn" id="LoginBtn" onclick="login()">Login</button>
-    <!----Sign up button----->
-            <button class="btn" id="RegistrationBtn" onclick="register()">Sign Up</button>
-        </div>
+        <!-- Empty flex spacer that keeps the navbar's 1/1 balance so the center menu stays centered -->
+        <div class="nav-right"></div>
+
     <!----Menu button----->
         <div class="nav-menu-btn">
-            <img src="icons/menu(1).png" onclick="menutoggle()">
+            <img src="icons/menu(1).png" alt="Open menu" id="menuToggleBtn" onclick="menutoggle()" aria-expanded="false" aria-controls="navMenu">
         </div>
     </nav>
 
-    <!-------- form box ------>
-    <div class="form-box">
+    <!-------- Form box ------>
+    <div class="form-box" id="formBox">
 
     <!---- Login box ----->
             <div class="login-box" id="login">
 
     <!----Don't have an account, sign up & header(login)---->
                 <div class="top">
-                    <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                    <span>Don't have an account? <a href="#" onclick="showRegister()">Sign Up</a></span>
                     <header>Login</header>
                 </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
     <!-----Username or email bar----->
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Username or email"required>
-                    <img src="user.png"><!--Email icon needed-->
+                    <input type="text" class="input-field" id="loginEmail" placeholder="Username or email" required>
+                    <img src="user.png" alt="">
                 </div>
     <!-----Password bar------->
                 <div class="input-box">
-                    <input type="password" class="input-field" placeholder="Password" required="required">
-                    <img src="padlock.png">
+                    <input type="password" class="input-field" id="loginPassword" placeholder="Password" required minlength="6">
+                    <img src="padlock.png" alt="">
+                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility('loginPassword', this)" tabindex="-1" aria-label="Toggle password visibility">
+                        <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/></svg>
+                    </button>
                 </div>
+                <div class="error-message" id="loginError"></div>
     <!------Submit button------>
                 <div class="input-box">
-                    <input type="submit" class="submit" value="Submit">
+                    <input type="submit" class="submit" value="Login">
                 </div>
-    
+
                 <div class="two-col">
-    <!----Forgot password----->
-                    <div class="one">
-                        <input type="checkbox" id="login-check">
-                        <label for="login-check">Remember Me</label>
-                    </div>
     <!----Forgot Password----->
-                    <div class="two">
-                        <label><a href="#">Forgot password?</a></label>
+                    <div class="two" style="margin: 0 auto;">
+                        <label><a href="#" onclick="showForgotPassword(); return false;">Forgot password?</a></label>
                     </div>
 
                 </div>
+                </form>
 
             </div>
 
@@ -83,94 +106,842 @@
 
         <!----Have an account, login & header(sign up)----->
             <div class="top">
-                <span>Have an account? <a href="#" onclick="login()">Login</a></span>
-                <header>Sign up</header>
+                <span>Have an account? <a href="#" onclick="showLogin()">Login</a></span>
+                <header>Sign Up</header>
             </div>
+
+            <form id="registerForm" onsubmit="handleRegister(event)">
 
             <div class="two-forms">
 
         <!-----Firstname bar----->
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Firstname"required>
-                    <img src="user.png">
+                    <input type="text" class="input-field" id="regFirstname" placeholder="Firstname" required>
+                    <img src="user.png" alt="">
                 </div>
         <!-----Lastname bar----->
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Lastname"required>
-                    <img src="user.png">
+                    <input type="text" class="input-field" id="regLastname" placeholder="Lastname" required>
+                    <img src="user.png" alt="">
                 </div>
 
             </div>
         <!-----Email bar ------>
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Email"required>
-                <img src="user.png"><!--Email icon needed-->
+                <input type="email" class="input-field" id="regEmail" placeholder="Email" required>
+                <img src="user.png" alt="">
             </div>
         <!--------password bar-------->
             <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password"required>
-                <img src="padlock.png">
+                <input type="password" class="input-field" id="regPassword" placeholder="Password (min. 6 characters)" required minlength="6" oninput="checkPasswordStrength()">
+                <img src="padlock.png" alt="">
+                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('regPassword', this)" tabindex="-1" aria-label="Toggle password visibility">
+                    <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/></svg>
+                </button>
             </div>
+            <div class="password-strength" id="passwordStrength">
+                <div class="strength-bar">
+                    <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <span class="strength-label" id="strengthLabel"></span>
+            </div>
+            <div class="error-message" id="registerError"></div>
         <!-------Register button------->
             <div class="input-box">
-                <input type="submit" class="submit" value="Register">
+                <input type="submit" class="submit" value="Create Account">
             </div>
-        
-            <div class="two-col">
-        <!----Checkox----->
-                <div class="one">
-                    <input type="checkbox" id="register-check">
-                    <label for="register-check">Remember Me</label>
-                </div>
-        <!---Terms & conditions---->
-                <div class="two">
-                    <label><a href="#">Terms & conditions</a></label>
-                </div>
 
+            </form>
+
+        </div>
+
+        <!---- forgot password box ----->
+        <div class="forgot-box" id="forgot">
+
+            <div class="top">
+                <span>Remember your password? <a href="#" onclick="showLogin()">Login</a></span>
+                <header>Reset Password</header>
+            </div>
+
+            <!-----Step 1: Enter Email----->
+            <div class="reset-step" id="resetStep1">
+                <p class="reset-desc">Enter your email address and we'll send you a reset code.</p>
+                <form onsubmit="handleSendResetCode(event)">
+                    <div class="input-box">
+                        <input type="email" class="input-field" id="resetEmail" placeholder="Your email address" required>
+                        <img src="user.png" alt="">
+                    </div>
+                    <div class="error-message" id="resetError1"></div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Send Reset Code">
+                    </div>
+                </form>
+            </div>
+
+            <!-----Step 2: Verify Code----->
+            <div class="reset-step" id="resetStep2" style="display:none;">
+                <p class="reset-desc">A reset code has been sent to <strong id="resetEmailDisplay"></strong></p>
+                <div class="reset-code-box" id="resetCodeDisplay"></div>
+                <form onsubmit="handleVerifyCode(event)">
+                    <div class="input-box">
+                        <input type="text" class="input-field" id="resetCodeInput" placeholder="Enter 6-digit code" maxlength="6" required>
+                        <img src="padlock.png" alt="">
+                    </div>
+                    <div class="error-message" id="resetError2"></div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Verify Code">
+                    </div>
+                </form>
+            </div>
+
+            <!-----Step 3: New Password----->
+            <div class="reset-step" id="resetStep3" style="display:none;">
+                <p class="reset-desc">Choose a new password for your account.</p>
+                <form onsubmit="handleResetPassword(event)">
+                    <div class="input-box">
+                        <input type="password" class="input-field" id="resetNewPassword" placeholder="New password (min. 6 chars)" required minlength="6">
+                        <img src="padlock.png" alt="">
+                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('resetNewPassword', this)" tabindex="-1" aria-label="Toggle password visibility">
+                            <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/></svg>
+                        </button>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" id="resetConfirmPassword" placeholder="Confirm new password" required minlength="6">
+                        <img src="padlock.png" alt="">
+                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('resetConfirmPassword', this)" tabindex="-1" aria-label="Toggle password visibility">
+                            <svg class="eye-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="eye-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/></svg>
+                        </button>
+                    </div>
+                    <div class="error-message" id="resetError3"></div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Reset Password">
+                    </div>
+                </form>
+            </div>
+
+            <!-----Step 4: Success Message----->
+            <div class="reset-step" id="resetStep4" style="display:none;">
+                <div class="reset-success">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <h3>Password Reset!</h3>
+                    <p>Your password has been updated successfully.</p>
+                    <a href="#" class="submit reset-back-btn" onclick="handleResetDone()">Back to Login</a>
+                </div>
             </div>
 
         </div>
 
     </div>
 
+    <!----Logged-in view: account dashboard (shown after login/registration)---->
+    <div class="account-dashboard" id="accountDashboard" style="display:none;">
+
+        <!----- Welcome hero ----->
+        <section class="dash-hero">
+            <div class="dash-hero-decor dash-hero-decor-1"></div>
+            <div class="dash-hero-decor dash-hero-decor-2"></div>
+            <div class="dash-avatar" id="dashAvatar">U</div>
+            <div class="dash-hero-text">
+                <p class="dash-greeting" id="dashGreeting">Welcome back,</p>
+                <h1 class="dash-name" id="dashName">Shopper</h1>
+                <p class="dash-email" id="dashEmail"></p>
+            </div>
+            <button type="button" class="dash-logout-btn" onclick="handleLogout()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Logout
+            </button>
+        </section>
+
+        <!----- Live stats ----->
+        <section class="dash-stats">
+            <a class="stat-card" href="product.html">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                </div>
+                <div>
+                    <p class="stat-value" id="statCartCount">0</p>
+                    <p class="stat-label">Items in Cart</p>
+                </div>
+            </a>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div>
+                    <p class="stat-value" id="statCartTotal">KSh 0</p>
+                    <p class="stat-label">Cart Total</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div>
+                    <p class="stat-value" id="statStatus">Active</p>
+                    <p class="stat-label">Account Status</p>
+                </div>
+            </div>
+        </section>
+
+        <!----- Account details & quick actions ----->
+        <section class="dash-panels">
+            <div class="dash-panel">
+                <h2 class="dash-panel-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Account Details
+                </h2>
+                <div class="dash-field">
+                    <span class="dash-field-label">First Name</span>
+                    <span class="dash-field-value" id="dashFirstname">-</span>
+                </div>
+                <div class="dash-field">
+                    <span class="dash-field-label">Last Name</span>
+                    <span class="dash-field-value" id="dashLastname">-</span>
+                </div>
+                <div class="dash-field">
+                    <span class="dash-field-label">Email</span>
+                    <span class="dash-field-value" id="dashFieldEmail">-</span>
+                </div>
+                <div class="dash-field">
+                    <span class="dash-field-label">Membership</span>
+                    <span class="dash-field-value dash-badge">Cartopia Member</span>
+                </div>
+            </div>
+
+            <div class="dash-panel">
+                <h2 class="dash-panel-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    Quick Actions
+                </h2>
+                <a class="dash-action primary-action" href="product.html" id="continueShoppingBtn">
+                    <span>Continue Shopping</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a class="dash-action" href="product.html">
+                    <span>View Products</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a class="dash-action" href="#" onclick="showForgotPassword(); return false;">
+                    <span>Change Password</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </a>
+                <a class="dash-action danger-action" href="#" onclick="handleLogout(); return false;">
+                    <span>Logout</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                </a>
+            </div>
+        </section>
+    </div>
+
 </div>
 
 <script>
-    function menutoggle() {
-        var i = document.getElementById("navMenu");
+    // ===== UTILITY FUNCTIONS =====
 
-        if(i.className === "nav-menu"){
-            i.className += "responsive";
-        } else {
-            i.className = "nav-menu";
+    const USERS_KEY = 'cartopia_users';
+    const SESSION_KEY = 'cartopia_session';
+
+    function getUsers() {
+        try {
+            const data = localStorage.getItem(USERS_KEY);
+            return data ? JSON.parse(data) : [];
+        } catch (e) {
+            return [];
         }
     }
-</script>
 
-<script>
-    var a = document.getElementById("LoginBtn");
-    var b = document.getElementById("RegistrationBtn");
-    var c = document.getElementById("login");
-    var d = document.getElementById("register");
-
-    function login(){
-        c.style.left="4px";
-        d.style.right="-520px";
-        a.className +=" white-btn";
-        b.className="btn";
-        c.style.opacity=1;
-        d.style.opacity=0;
+    function saveUsers(users) {
+        try {
+            localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        } catch (e) {
+            console.warn('Could not save users:', e);
+        }
     }
 
-    function register(){
-        c.style.left="-510px";
-        d.style.right="5px";
-        a.className ="btn";
-        b.className +=" white-btn";
-        c.style.opacity=0;
-        d.style.opacity=1;
+    function getSession() {
+        try {
+            const data = localStorage.getItem(SESSION_KEY);
+            return data ? JSON.parse(data) : null;
+        } catch (e) {
+            return null;
+        }
     }
+
+    function saveSession(user) {
+        try {
+            localStorage.setItem(SESSION_KEY, JSON.stringify({
+                email: user.email,
+                firstname: user.firstname,
+                lastname: user.lastname
+            }));
+        } catch (e) {
+            console.warn('Could not save session:', e);
+        }
+    }
+
+    function clearSession() {
+        localStorage.removeItem(SESSION_KEY);
+    }
+
+    function getRedirectUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('redirect') || 'product.html';
+    }
+
+    // ===== UI FUNCTIONS =====
+
+    function showError(elementId, message) {
+        const errorEl = document.getElementById(elementId);
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.style.color = "#e74c3c";
+            errorEl.style.fontSize = "13px";
+            errorEl.style.marginBottom = "8px";
+            errorEl.style.padding = "0 10px";
+        }
+    }
+
+    function clearError(elementId) {
+        const errorEl = document.getElementById(elementId);
+        if (errorEl) {
+            errorEl.textContent = "";
+        }
+    }
+
+    function showSuccess(elementId, message) {
+        const errorEl = document.getElementById(elementId);
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.style.color = "#27ae60";
+            errorEl.style.fontSize = "13px";
+            errorEl.style.marginBottom = "8px";
+            errorEl.style.padding = "0 10px";
+        }
+    }
+
+    // ===== TAB SWITCHING =====
+
+    const loginBox = document.getElementById("login");
+    const registerBox = document.getElementById("register");
+
+    function closeMobileMenu() {
+        const menu = document.getElementById("navMenu");
+        const backdrop = document.getElementById("navBackdrop");
+        const toggle = document.getElementById("menuToggleBtn");
+        if (menu) {
+            menu.className = "nav-menu";
+        }
+        if (backdrop) {
+            backdrop.classList.remove("open");
+        }
+        if (toggle) {
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.classList.remove("active");
+            toggle.focus();
+        }
+        document.body.style.overflow = "";
+    }
+
+    function hideDashboard() {
+        const dashboard = document.getElementById("accountDashboard");
+        if (dashboard) dashboard.style.display = "none";
+    }
+
+    function showLogin() {
+        closeMobileMenu();
+        hideDashboard();
+        const forgotBox = document.getElementById('forgot');
+        if (forgotBox) {
+            forgotBox.style.right = "-520px";
+            forgotBox.style.opacity = 0;
+        }
+        loginBox.style.left = "4px";
+        registerBox.style.right = "-520px";
+        loginBox.style.opacity = 1;
+        registerBox.style.opacity = 0;
+        clearError("loginError");
+        clearError("registerError");
+    }
+
+    function showRegister() {
+        closeMobileMenu();
+        hideDashboard();
+        loginBox.style.left = "-510px";
+        registerBox.style.right = "5px";
+        loginBox.style.opacity = 0;
+        registerBox.style.opacity = 1;
+        clearError("loginError");
+        clearError("registerError");
+    }
+
+    // ===== MOBILE MENU =====
+
+    function menutoggle() {
+        const menu = document.getElementById("navMenu");
+        const backdrop = document.getElementById("navBackdrop");
+        const toggle = document.getElementById("menuToggleBtn");
+        const isOpening = !menu.classList.contains("responsive");
+        menu.classList.toggle("responsive", isOpening);
+        backdrop.classList.toggle("open", isOpening);
+        if (toggle) {
+            toggle.setAttribute("aria-expanded", isOpening ? "true" : "false");
+            toggle.classList.toggle("active", isOpening);
+        }
+        document.body.style.overflow = isOpening ? "hidden" : "";
+        if (isOpening) {
+            const closeBtn = document.getElementById("drawerCloseBtn");
+            if (closeBtn) closeBtn.focus();
+        } else if (toggle) {
+            toggle.focus();
+        }
+    }
+
+    // Close the drawer with the Escape key
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closeMobileMenu();
+        }
+    });
+
+    // ===== AUTH: LOGIN =====
+
+    function handleLogin(event) {
+        event.preventDefault();
+        clearError("loginError");
+
+        const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+        const password = document.getElementById("loginPassword").value;
+
+        if (!email) {
+            showError("loginError", "Please enter your email address.");
+            return;
+        }
+
+        if (!password || password.length < 6) {
+            showError("loginError", "Password must be at least 6 characters.");
+            return;
+        }
+
+        const users = getUsers();
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+            showError("loginError", "No account found with this email. Please sign up first.");
+            return;
+        }
+
+        if (user.password !== password) {
+            showError("loginError", "Incorrect password. Please try again.");
+            return;
+        }
+
+        // Login successful — show the account dashboard first
+        saveSession(user);
+        showSuccess("loginError", "Login successful! Welcome back.");
+        showDashboard(true);
+    }
+
+    // ===== AUTH: REGISTER =====
+
+    function handleRegister(event) {
+        event.preventDefault();
+        clearError("registerError");
+
+        const firstname = document.getElementById("regFirstname").value.trim();
+        const lastname = document.getElementById("regLastname").value.trim();
+        const email = document.getElementById("regEmail").value.trim().toLowerCase();
+        const password = document.getElementById("regPassword").value;
+
+        if (!firstname) {
+            showError("registerError", "Please enter your first name.");
+            return;
+        }
+
+        if (!lastname) {
+            showError("registerError", "Please enter your last name.");
+            return;
+        }
+
+        if (!email) {
+            showError("registerError", "Please enter your email address.");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showError("registerError", "Please enter a valid email address.");
+            return;
+        }
+
+        if (!password || password.length < 6) {
+            showError("registerError", "Password must be at least 6 characters.");
+            return;
+        }
+
+        const users = getUsers();
+
+        // Check if email already exists
+        if (users.some(u => u.email === email)) {
+            showError("registerError", "An account with this email already exists. Please login instead.");
+            return;
+        }
+
+        // Create new user
+        const newUser = { firstname, lastname, email, password };
+        users.push(newUser);
+        saveUsers(users);
+
+        // Auto-login after registration — show the account dashboard first
+        saveSession(newUser);
+        showSuccess("registerError", "Account created successfully!");
+        showDashboard(true);
+    }
+
+    // ===== AUTH: LOGOUT =====
+
+    function handleLogout() {
+        clearSession();
+        location.reload();
+    }
+
+    function handleMobileLogout(event) {
+        if (event) event.preventDefault();
+        closeMobileMenu();
+        handleLogout();
+    }
+
+    // ===== FORGOT PASSWORD FLOW =====
+
+    let resetCode = '';
+    let resetEmail = '';
+
+    function showForgotPassword() {
+        // Hide login, register and dashboard; show forgot
+        hideDashboard();
+        const formBox = document.getElementById("formBox");
+        if (formBox) formBox.style.display = "flex";
+        loginBox.style.left = "-510px";
+        registerBox.style.right = "-520px";
+        loginBox.style.opacity = 0;
+        registerBox.style.opacity = 0;
+
+        const forgotBox = document.getElementById('forgot');
+        forgotBox.style.right = "4px";
+        forgotBox.style.opacity = 1;
+
+        // Reset to step 1
+        document.getElementById('resetStep1').style.display = 'block';
+        document.getElementById('resetStep2').style.display = 'none';
+        document.getElementById('resetStep3').style.display = 'none';
+        document.getElementById('resetStep4').style.display = 'none';
+        document.getElementById('resetEmail').value = '';
+        document.getElementById('resetCodeInput').value = '';
+        document.getElementById('resetNewPassword').value = '';
+        document.getElementById('resetConfirmPassword').value = '';
+        clearError('resetError1');
+        clearError('resetError2');
+        clearError('resetError3');
+        resetCode = '';
+        resetEmail = '';
+    }
+
+
+    function handleSendResetCode(event) {
+        event.preventDefault();
+        clearError('resetError1');
+
+        const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+        if (!email) {
+            showError('resetError1', 'Please enter your email address.');
+            return;
+        }
+
+        const users = getUsers();
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+            showError('resetError1', 'No account found with this email address.');
+            return;
+        }
+
+        // Generate a 6-digit reset code
+        resetCode = String(Math.floor(100000 + Math.random() * 900000));
+        resetEmail = email;
+
+        // Display the code (simulated email)
+        document.getElementById('resetEmailDisplay').textContent = email;
+        document.getElementById('resetCodeDisplay').textContent = '🔑 Reset Code: ' + resetCode;
+
+        // Show step 2
+        document.getElementById('resetStep1').style.display = 'none';
+        document.getElementById('resetStep2').style.display = 'block';
+    }
+
+    function handleVerifyCode(event) {
+        event.preventDefault();
+        clearError('resetError2');
+
+        const code = document.getElementById('resetCodeInput').value.trim();
+
+        if (code !== resetCode) {
+            showError('resetError2', 'Invalid reset code. Please try again.');
+            return;
+        }
+
+        // Show step 3
+        document.getElementById('resetStep2').style.display = 'none';
+        document.getElementById('resetStep3').style.display = 'block';
+    }
+
+    // After the reset flow, return to the dashboard if still signed in, otherwise to login
+    function handleResetDone() {
+        if (getSession()) {
+            showDashboard(false);
+        } else {
+            showLogin();
+        }
+    }
+
+    function handleResetPassword(event) {
+        event.preventDefault();
+        clearError('resetError3');
+
+        const newPassword = document.getElementById('resetNewPassword').value;
+        const confirmPassword = document.getElementById('resetConfirmPassword').value;
+
+        if (!newPassword || newPassword.length < 6) {
+            showError('resetError3', 'Password must be at least 6 characters.');
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            showError('resetError3', 'Passwords do not match.');
+            return;
+        }
+
+        // Update the user's password in localStorage
+        const users = getUsers();
+        const idx = users.findIndex(u => u.email === resetEmail);
+        if (idx !== -1) {
+            users[idx].password = newPassword;
+            saveUsers(users);
+        }
+
+        // Show success
+        document.getElementById('resetStep3').style.display = 'none';
+        document.getElementById('resetStep4').style.display = 'block';
+    }
+
+    // ===== PASSWORD STRENGTH INDICATOR =====
+
+    function checkPasswordStrength() {
+        const password = document.getElementById('regPassword').value;
+        const fill = document.getElementById('strengthFill');
+        const label = document.getElementById('strengthLabel');
+        
+        if (!password) {
+            fill.style.width = '0';
+            fill.className = 'strength-fill';
+            label.textContent = '';
+            label.style.color = '#999';
+            return;
+        }
+
+        let score = 0;
+
+        // Length checks
+        if (password.length >= 6) score += 1;
+        if (password.length >= 8) score += 1;
+        if (password.length >= 12) score += 1;
+
+        // Character variety checks
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score += 1;
+        if (/\d/.test(password)) score += 1;
+        if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+
+        // Determine level
+        let level, width, color;
+
+        if (score <= 1) {
+            level = 'Weak';
+            width = '25%';
+            color = 'weak';
+        } else if (score <= 2) {
+            level = 'Fair';
+            width = '50%';
+            color = 'fair';
+        } else if (score <= 3) {
+            level = 'Good';
+            width = '75%';
+            color = 'good';
+        } else {
+            level = 'Strong';
+            width = '100%';
+            color = 'strong';
+        }
+
+        fill.style.width = width;
+        fill.className = 'strength-fill ' + color;
+        label.textContent = level;
+        label.style.color = '#999';
+        if (color === 'weak') label.style.color = '#e74c3c';
+        else if (color === 'fair') label.style.color = '#f39c12';
+        else if (color === 'good') label.style.color = '#f1c40f';
+        else if (color === 'strong') label.style.color = '#27ae60';
+    }
+
+    // ===== PASSWORD VISIBILITY TOGGLE =====
+
+    function togglePasswordVisibility(inputId, btn) {
+        const input = document.getElementById(inputId);
+        const eyeOpen = btn.querySelector('.eye-open');
+        const eyeClosed = btn.querySelector('.eye-closed');
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            eyeOpen.style.display = 'none';
+            eyeClosed.style.display = 'block';
+        } else {
+            input.type = 'password';
+            eyeOpen.style.display = 'block';
+            eyeClosed.style.display = 'none';
+        }
+    }
+
+    // ===== ACCOUNT DASHBOARD =====
+
+    function getCartStats() {
+        try {
+            const saved = localStorage.getItem('cartopia_cart');
+            if (!saved) return { count: 0, total: 0 };
+            const cart = JSON.parse(saved) || {};
+            let count = 0;
+            let total = 0;
+            Object.values(cart).forEach(item => {
+                if (!item) return;
+                const qty = item.quantity || 1;
+                count += qty;
+                total += (item.price || 0) * qty;
+            });
+            return { count, total };
+        } catch (e) {
+            return { count: 0, total: 0 };
+        }
+    }
+
+    function getInitials(firstname, lastname) {
+        const a = (firstname || '').trim().charAt(0) || 'S';
+        const b = (lastname || '').trim().charAt(0) || '';
+        return (a + b).toUpperCase();
+    }
+
+    function renderDashboard(session, justLoggedIn) {
+        if (!session) return;
+
+        document.getElementById("dashGreeting").textContent = justLoggedIn ? "Welcome to Cartopia," : "Welcome back,";
+        document.getElementById("dashName").textContent = session.firstname || "Shopper";
+        document.getElementById("dashEmail").textContent = session.email || "";
+        document.getElementById("dashAvatar").textContent = getInitials(session.firstname, session.lastname);
+
+        document.getElementById("dashFirstname").textContent = session.firstname || "-";
+        document.getElementById("dashLastname").textContent = session.lastname || "-";
+        document.getElementById("dashFieldEmail").textContent = session.email || "-";
+
+        const stats = getCartStats();
+        document.getElementById("statCartCount").textContent = stats.count;
+        document.getElementById("statCartTotal").textContent = stats.count ? `KSh ${stats.total.toLocaleString()}` : "KSh 0";
+
+        const continueBtn = document.getElementById("continueShoppingBtn");
+        if (continueBtn) continueBtn.href = getRedirectUrl();
+    }
+
+    function showDashboard(justLoggedIn) {
+        const session = getSession();
+        if (!session) return;
+
+        const formBox = document.getElementById("formBox");
+        const dashboard = document.getElementById("accountDashboard");
+
+        formBox.style.display = "none";
+        dashboard.style.display = "block";
+
+        // Show the logout link in the mobile drawer
+        const mobileUser = document.getElementById("mobileUser");
+        if (mobileUser) {
+            mobileUser.classList.remove("hidden");
+        }
+
+        renderDashboard(session, justLoggedIn);
+
+        // Clear any leftover form messages
+        clearError("loginError");
+        clearError("registerError");
+        clearError("resetError1");
+        clearError("resetError2");
+        clearError("resetError3");
+
+        // Entrance animation
+        dashboard.classList.remove("animate");
+        void dashboard.offsetWidth;
+        dashboard.classList.add("animate");
+
+        // Bring the dashboard into view
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // ===== CHECK AUTH STATE ON LOAD =====
+
+    function checkAuthState() {
+        const session = getSession();
+        const formBox = document.getElementById("formBox");
+        const dashboard = document.getElementById("accountDashboard");
+
+        if (session) {
+            // User is logged in — show their account
+            formBox.style.display = "none";
+            dashboard.style.display = "block";
+            renderDashboard(session, false);
+
+            // Show the logout link in the mobile drawer
+            const mobileUser = document.getElementById("mobileUser");
+            if (mobileUser) {
+                mobileUser.classList.remove("hidden");
+            }
+        } else {
+            // User is not logged in
+            formBox.style.display = "block";
+            dashboard.style.display = "none";
+
+            // Hide mobile user section
+            const mobileUser = document.getElementById("mobileUser");
+            if (mobileUser) {
+                mobileUser.classList.add("hidden");
+            }
+        }
+    }
+
+    checkAuthState();
 </script>
 
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()" role="button" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+
+    <script>
+        window.addEventListener("scroll", function() {
+            const btn = document.getElementById("scrollTop");
+            if (window.scrollY > 400) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </body>
 </html>

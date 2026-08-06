@@ -4,55 +4,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cartopia - Your Ultimate Online Shopping Destination. Shop the best deals on phones, accessories, electronics, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="icons/cart.png">
-    <title>Cartopia | Ecommerce wesite</title>
+    <title>Cartopia | Your Ultimate Online Shopping Destination</title>
 </head>
 <body>
     <div class="header">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <img src="icons/cart.png">
+                    <img src="icons/cart.png" alt="Cartopia logo">
                     <p>Cartopia</p>
                 </div>
             <nav>
                 <ul id="MenuItems">
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="product.html">Products</a></li>
                     <li><a href="account.html">Account</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <img src="icons/menu(1).png" class="menu-icon" onclick="menutoggle()">
+            <img src="icons/menu(1).png" class="menu-icon" id="menuToggle" onclick="toggleNavOverlay()" alt="Open menu" aria-expanded="false" aria-controls="navOverlay">
             </div>
             <div class="row">
                 <div class="col-2">            
                     <h1>Your Ultimate Online <br>Shopping <br>Destination!</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, expedita quibusdam eaque vel est, odit quo architecto quae sit ipsa voluptate esse, debitis culpa vitae distinctio sed temporibus! Nemo, quam!</p>
+                    <p>Discover amazing deals on the latest gadgets, accessories, and fashion — all at unbeatable prices. At Cartopia, we bring you quality products you can trust, with fast delivery across Kenya and dedicated customer support every step of the way. Shop with confidence today!</p>
                     <a href="product.html" class="btn">Shop Now</a>
                 </div>
                 <div class="col-2">
-                    <img src="images/pic1.png">
+                    <img src="images/pic1.png" alt="Shopping illustration">
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Mobile side drawer menu (slides in from the right) -->
+    <div class="nav-backdrop" id="navBackdrop" onclick="closeNavOverlay()" aria-hidden="true"></div>
+    <div class="nav-overlay" id="navOverlay">
+        <div class="drawer-header">
+            <img src="icons/cart.png" alt="Cartopia">
+            <span>Cartopia</span>
+            <button type="button" class="drawer-close" id="navDrawerClose" onclick="closeNavOverlay()" aria-label="Close menu">&#10005;</button>
+        </div>
+        <ul>
+            <li><a href="index.html" onclick="closeNavOverlay()">Home</a></li>
+            <li><a href="product.html" onclick="closeNavOverlay()">Products</a></li>
+            <li><a href="account.html" onclick="closeNavOverlay()">Account</a></li>
+            <li><a href="#contact" onclick="closeNavOverlay()">Contact</a></li>
+            <li class="overlay-account-link"><a href="account.html" class="overlay-account-btn" onclick="closeNavOverlay()">Sign In / Register</a></li>
+        </ul>
+    </div>
+
 <!------------About Us------------->
 <section class="about" id="about">
         <div class="about-img">
-                <img src="images/pic2.jpg">
+                <img src="images/pic2.jpg" alt="About Cartopia">
         </div>
         <div class="about-text">
-            <h2>About Us</h2>
+            <h2>About Cartopia</h2>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, voluptas. Temporibus vero incidunt in, dolorum provident assumenda natus ipsum veritatis dicta, minus ratione a omnis voluptatum itaque voluptatem, nemo maxime!</p>
+            <p>Welcome to Cartopia — your trusted online store based in Embu, Kenya. We're passionate about bringing you the best in tech, accessories, and lifestyle products at prices that won't break the bank. Every item in our collection is carefully selected for quality and value.</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A veniam quidem obcaecati explicabo ut ea facere quos magnam! Illum quam esse ipsa ab eligendi perferendis iusto dicta nostrum accusamus nihil!</p>
+            <p>We know that online shopping is built on trust. That's why we offer secure ordering, transparent pricing with no hidden fees, and direct support via WhatsApp — so you're never alone in your shopping journey. Your satisfaction is our top priority.</p>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias adipisci, similique inventore repellendus eius repudiandae voluptas at. Ipsum magni tempora suscipit possimus odit obcaecati rem eum saepe, voluptas, fugiat doloribus.</p>
-            <a href="#" class="btn">Learn More</a>
+            <p>From the latest smartphones and wireless earphones to fashion sneakers and gaming accessories, Cartopia is here to make your shopping experience seamless, enjoyable, and affordable. Join hundreds of happy customers across Kenya who shop with us every day!</p>
+            <a href="product.html" class="btn">Browse Products</a>
         </div>
 </section>
 
@@ -61,44 +82,36 @@
         <h2 class="title">Featured Products</h2>
         <div class="row">
             <div class="col-4">
-                <img src="images/phone.png">
+                <img src="images/phone.png" alt="Infinix Xpad">
                 <h4>Infinix Xpad</h4>
-                <p>Ksh 35,000</p>
             </div>
             <div class="col-4">
-                <img src="images/airpods.png">
+                <img src="images/airpods.png" alt="Oraimo AirPods 3 TWS">
                 <h4>Oraimo AirPods 3 TWS</h4>
-                <p>Ksh 2,870</p>
             </div>
             <div class="col-4">
-                <img src="images/headphones.png">
+                <img src="images/headphones.png" alt="Wireless Bluetooth Headphones">
                 <h4>Wireless Bluetooth Headphones</h4>
-                <p>Ksh 3,350</p>
             </div>
             <div class="col-4">
-                <img src="images/watch.png">
+                <img src="images/watch.png" alt="Bluetooth Wireless Smart Watch">
                 <h4>Bluetooth Wireless Smart Watch</h4>
-                <p>Ksh 1,052</p>
             </div>
             <div class="col-4">
-                <img src="images/Transcend.png">
+                <img src="images/Transcend.png" alt="Transcend External Hard Drive">
                 <h4>Transcend External Hard Drive</h4>
-                <p>Ksh 10,450</p>
             </div>
             <div class="col-4">
-                <img src="images/power bank.png">
+                <img src="images/power bank.png" alt="Fast Charging Power Bank">
                 <h4>Fast Charging Power Bank</h4>
-                <p>Ksh 1,000</p>
             </div>
             <div class="col-4">
-                <img src="images/pad1.png">
+                <img src="images/pad1.png" alt="Sony PS4 PAD controller">
                 <h4>Sony PS4 PAD controller</h4>
-                <p>Ksh 2,399</p>
             </div>
             <div class="col-4">
-                <img src="images/shoes2.png">
+                <img src="images/shoes2.png" alt="Casual Men Sneakers">
                 <h4>Casual Men Sneakers</h4>
-                <p>Ksh 2,200</p>
             </div>
         </div>
         </div>
@@ -106,10 +119,10 @@
     <section class="footer" id="contact">
         <div class="footer-box">
             <h2>Cartopia</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>Quis, corrupti. Illo ab libero nulla eum quos, qui quam nesciunt nobis? <br>Rem tempore illo possimus quia eos autem eius obcaecati quidem.</p>
+            <p>Your trusted online shop for quality electronics,<br> accessories, and fashion in Kenya.<br>Fast delivery &amp; friendly support guaranteed.</p>
             <div class="social">
                 <a href="#"><img src="icons/instagram.png"></a>
-                 <a href="https://wa.me/254792892703" target="_blank"
+                <a href="https://wa.me/254792892703" target="_blank"
                 rel="noopener noreferrer"><img src="icons/whatsapp.png"></a>
                 <a href="#"><img src="icons/youtube(1).png"></a>
             </div>
@@ -119,47 +132,85 @@
             <li><a href="product.html">Products</a></li>
             <li><a href="https://wa.me/254792892703" target="_blank"
                     rel="noopener noreferrer">Help</a></li>
-            <li><a href="#">Return policy</a></li>
-            <li><a href="#">Terms & conditions</a></li>
+            <li><a href="#">Returns &amp; refunds</a></li>
+            <li><a href="#">Terms of service</a></li>
         </div>
         <div class="footer-box">
             <h3>View Guides</h3>
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Blog Posts</a></li>
-            <li><a href="#">Our Branches</a></li>
+            <li><a href="product.html">New arrivals</a></li>
+            <li><a href="#">Best sellers</a></li>
+            <li><a href="#">Special offers</a></li>
+            <li><a href="https://wa.me/254792892703" target="_blank" rel="noopener noreferrer">Order via WhatsApp</a></li>
         </div>
         <div class="footer-box">
             <h3>Contact</h3>
             <div class="contact">
                 <span><a href="https://wa.me/254792892703" target="_blank"
                     rel="noopener noreferrer">+254 792892703</a></span>
-                <span>Postal address - 60100</span>
-                <span>Location - Embu</span>
+                <span>P.O. Box 60100, Embu, Kenya</span>
+                <span>Shop location: Embu Town</span>
             </div>
         </div>
     </section>
 <!-----------------copyright-------------->
 <div class="copyright">
-    <p> <<<<<< #777&!; Davidstone All Right Reserved >>>>>> </p>
+    <p>&copy; 2026 Cartopia. All Rights Reserved.</p>
 </div>
 
 <!-------------JS for toggle menu------------->
 
 <script>
-    var MenuItems=document.getElementById("MenuItems");
+    var navOverlay = document.getElementById("navOverlay");
+    var menuToggle = document.getElementById("menuToggle");
+    var navBackdrop = document.getElementById("navBackdrop");
+    var navDrawerClose = document.getElementById("navDrawerClose");
 
-    MenuItems.style.maxHeight="0px";
-
-    function menutoggle(){
-        if(MenuItems.style.maxHeight=="0px")
-            {
-                MenuItems.style.maxHeight="200px"
-            }
-            else{
-                MenuItems.style.maxHeight="0px";
-            }
+    function toggleNavOverlay() {
+        var open = navOverlay.classList.toggle("open");
+        navBackdrop.classList.toggle("open", open);
+        menuToggle.classList.toggle("active", open);
+        menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        document.body.style.overflow = open ? "hidden" : "";
+        if (open && navDrawerClose) {
+            navDrawerClose.focus();
+        } else {
+            menuToggle.focus();
+        }
     }
+
+    function closeNavOverlay() {
+        navOverlay.classList.remove("open");
+        navBackdrop.classList.remove("open");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+        menuToggle.focus();
+    }
+
+    // Close the drawer with the Escape key
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+            closeNavOverlay();
+        }
+    });
 </script>
+
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()" role="button" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+
+    <script>
+        window.addEventListener("scroll", function() {
+            const btn = document.getElementById("scrollTop");
+            if (window.scrollY > 400) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </body>
 </html>

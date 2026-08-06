@@ -4,44 +4,128 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop our products at Cartopia - phones, accessories, electronics, and more with great prices.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style3.css">
     <link rel="icon" href="icons/cart.png">
-    <title>Cartopia | Ecommerce wesite</title>
+    <title>Cartopia | Shop Products</title>
 </head>
 <body>
 
     <div class="container">
         <div class="navbar">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li> <input type="text" class="searchBar" placeholder="Search products..." oninput="searchProducts(event)"></li>
-            </ul>
-        </nav>
+        <div class="nav-top-row">
+            <nav>
+                <ul id="desktopNav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="account.html?redirect=product.html" id="loginStatus"></a></li>
+                </ul>
+            </nav>
+            <!-- Search bar always visible on the page (desktop and mobile) -->
+            <input type="text" class="searchBar" placeholder="Search products..." oninput="searchProducts(event)" aria-label="Search products">
+            <!-- Hamburger for mobile -->
+            <img src="icons/menu(1).png" class="menu-icon" id="productMenuToggle" onclick="toggleProductOverlay()" alt="Open menu" aria-expanded="false" aria-controls="productNavOverlay">
+        </div>
+
         <header>
-            <h1>Product lists</h1>
-            <div class="shopping">
-                <img src="icons/cart(1).png">
-                <span class="quantity">0</span>
+            <div class="header-title-group">
+                <h1>Our Products</h1>
+                <div class="shopping">
+                    <img src="icons/cart(1).png" alt="Cart">
+                    <span class="quantity">0</span>
+                </div>
             </div>
         </header>
         </div>
+        <div class="category-filters" id="categoryFilters"></div>
         <div class="list"></div>
     </div>
 
+    <!-- Mobile side drawer menu (slides in from the right) -->
+    <div class="nav-backdrop" id="productNavBackdrop" onclick="closeProductOverlay()" aria-hidden="true"></div>
+    <div class="nav-overlay" id="productNavOverlay">
+        <div class="drawer-header">
+            <img src="icons/cart.png" alt="Cartopia">
+            <span>Cartopia</span>
+            <button type="button" class="drawer-close" id="productDrawerClose" onclick="closeProductOverlay()" aria-label="Close menu">&#10005;</button>
+        </div>
+        <ul>
+            <li><a href="index.html" onclick="closeProductOverlay()">Home</a></li>
+            <li><span id="overlayLoginStatus"></span></li>
+        </ul>
+    </div>
+        
     <div class="card">
-        <h1>Card</h1>
+        <h1>Shopping Cart</h1>
         <ul class="listCard"></ul>
         <div class="checkOut">
-            <div class="total">0</div>
+            <div class="total-label">
+                <span class="label-text">Total</span>
+                <div class="total">KSh 0</div>
+            </div>
             <div class="closeShopping">Close</div>
         </div>
-        <div class="checkoutButton" onclick="checkout()">Checkout</div>
+        <div class="checkoutButton" onclick="checkout()">
+            <img src="icons/shopping-cart.png" class="btn-icon" alt="">
+            Checkout via WhatsApp
+        </div>
     </div>
     
+    <script>
+        function toggleProductOverlay() {
+            var overlay = document.getElementById("productNavOverlay");
+            var backdrop = document.getElementById("productNavBackdrop");
+            var toggle = document.getElementById("productMenuToggle");
+            var open = overlay.classList.toggle("open");
+            backdrop.classList.toggle("open", open);
+            toggle.classList.toggle("active", open);
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            document.body.style.overflow = open ? "hidden" : "";
+            if (open) {
+                // Close the shopping cart so the nav drawer is not hidden behind it
+                document.body.classList.remove("active");
+                var closeBtn = document.getElementById("productDrawerClose");
+                if (closeBtn) closeBtn.focus();
+            } else {
+                toggle.focus();
+            }
+        }
+        function closeProductOverlay() {
+            document.getElementById("productNavOverlay").classList.remove("open");
+            document.getElementById("productNavBackdrop").classList.remove("open");
+            var toggle = document.getElementById("productMenuToggle");
+            toggle.classList.remove("active");
+            toggle.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+            toggle.focus();
+        }
+        // Close the drawer with the Escape key
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                closeProductOverlay();
+            }
+        });
+    </script>
     <script src="i2.js"></script>
 
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()" role="button" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
 
-    
+    <script>
+        window.addEventListener("scroll", function() {
+            const btn = document.getElementById("scrollTop");
+            if (window.scrollY > 400) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        });
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </body>
 </html>
